@@ -2,4 +2,10 @@
 title: "About"
 ---
 
-About this site
+Hello, I'm **Faisal Jan** from Turbat, Pakistan. I love to work on Data Science and AI projects that are used to solve real world problems. You can find some of my projects on [GitHub](https://github.com/FaisaljanBaloch) or let's connect to discuss your project at [faisaljanfazal\@yahoo.com](mailto:faisaljanfazal@yahoo.com).
+
+This project examines the effect of Limited English Proficiency (LEP) on a person's income when controlling other variables, such as education level and gender.
+
+You can view the [project repository](https://github.com/FaisaljanBaloch/lep-on-income) on GitHub.
+
+This project was created as a part of [Kane's Data Science Bootcamp](https://bootcamp.davidkane.info/).

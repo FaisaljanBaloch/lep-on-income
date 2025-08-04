@@ -11,6 +11,78 @@ library(tidyverse)
 library(tidymodels) # For mathematical models (i.e Linear Regression)
 library(broom) # includes tidy()
 library(marginaleffects) # To compare actual values and predictions
+library(scales)
 ```
 
-Content would go here...
+```{r}
+# Read data
+surveys <- read_rds(file = "data/usa_2021_23.rds") |>
+  mutate(
+    educ_level = factor(
+      educ_level,
+      levels = c(
+        "Less than HS",
+        "High school",
+        "Some college",
+        "Bachelor's",
+        "Graduate"
+      )
+    ) # Order education levels
+  )
+```
+
+```{r}
+# Using income wage as a linear function of LEP
+# Controlling other variables, such as a person's education and sex
+
+fit_model <- linear_reg() |>
+  fit(log_income ~ lep + educ_level + gender, data = surveys)
+```
+
+```{r}
+# Predictions of data
+predictions <- plot_predictions(
+  fit_model,
+  condition = c("lep", "educ_level", "gender"),
+  draw = FALSE
+)
+
+# Visualize predictions using ggplot2
+# Plot predicted income (back-transformed from log) with all variables
+
+predictions %>%
+  ggplot(
+    aes(
+      x = educ_level,
+      y = exp(estimate),
+      fill = gender
+    )
+  ) +
+  geom_col(position = position_dodge(width = 0.9)) +
+  geom_errorbar(
+    aes(ymin = exp(conf.low), ymax = exp(conf.high)),
+    position = position_dodge(width = 0.9),
+    width = 0.25
+  ) +
+  facet_grid(
+    lep ~ .,
+    labeller = labeller(
+      lep = c(`0` = "English Proficient", `1` = "Limited English")
+    )
+  ) +
+  labs(
+    title = "Predicted Income by LEP, Education Level, and Gender",
+    x = "Education Level",
+    y = "Predicted Income (USD)",
+    fill = "Gender"
+  ) +
+  scale_y_continuous(labels = dollar_format(scale = 1)) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    strip.text = element_text(face = "bold")
+  )
+```
+
+Language proficiency is one of the key requirements in almost every job posting, and being proficient in a language can open new doors for an individual. In this analysis, we are using a sample of data drawn from the American Community Surveys (U.S. Census) of 2021-2023 to examine the effect of Limited English proficiency on a person's income in the USA.
