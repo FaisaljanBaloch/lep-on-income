@@ -1,8 +1,10 @@
-# Limited English Proficiency (LEP) and Income
+# Effect of Limited English Proficiency (LEP) on Income
 
 > Do proficient in English earn more than LEPs?
 
 This analysis examine the effect of LEP on a person's income. Using data from the American Community Surveys (U.S. Census) of 2021-2023.
+
+View Project: [LEP on Income](https://faisaljanbaloch.github.io/lep-on-income/).
 
 #### Author
 
