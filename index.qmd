@@ -1,0 +1,16 @@
+---
+title: "Limited English Profiency on Income Levels"
+execute: 
+  echo: false
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+library(tidymodels) # For mathematical models (i.e Linear Regression)
+library(broom) # includes tidy()
+library(marginaleffects) # To compare actual values and predictions
+```
+
+Content would go here...
