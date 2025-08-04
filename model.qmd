@@ -1,0 +1,73 @@
+---
+title: "Model"
+execute: 
+  echo: false
+---
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+## Data Generating Mechanism
+
+The outcome variable in our model is the natural logarithm of income (`log_income`), and it is modeled as a linear function of English proficiency (`lep`), education level (`educ_level`), and gender (`gender`). The fitted model is:
+
+$$
+\begin{aligned}
+\log(\text{income}) =\;& 3.146 \\
+&+ 0.135 \cdot \text{LEP} \\
+&+ 1.139 \cdot \text{HighSchool} \\
+&+ 1.900 \cdot \text{SomeCollege} \\
+&+ 2.515 \cdot \text{Bachelors} \\
+&+ 3.829 \cdot \text{Graduate} \\
+&+ 1.154 \cdot \text{Male}
+\end{aligned}
+$$
+
+Where:
+
+- **LEP** = 1 if individual has limited English proficiency, 0 otherwise  
+- **HighSchool**, **SomeCollege**, **Bachelors**, **Graduate** are dummy variables for education level  
+- **Male** = 1 if individual is male, 0 if female  
+- The reference category is **female English-proficient individuals with less than high school education**
+
+To recover predicted income in dollars, we exponentiate the log outcome:
+
+$$
+\text{income} = \exp(\log(\text{income}))
+$$
+
+## Model Estimates
+
+```{r}
+regression_results <- tibble(
+  Variable = c("Intercept", "Limited English Proficiency", "High School", "Some College", 
+               "Bachelor's Degree", "Graduate Degree", "Male Gender"),
+  Coefficient = c(3.150, 0.135, 1.140, 1.900, 2.510, 3.830, 1.150),
+  `Std Error` = c(0.026, 0.039, 0.028, 0.037, 0.029, 0.027, 0.015),
+  `p-value` = c("<0.001", "<0.001", "<0.001", "<0.001", "<0.001", "<0.001", "<0.001"),
+  `95% CI` = c("[3.10, 3.20]", "[0.06, 0.21]", "[1.08, 1.19]", "[1.83, 1.97]", 
+               "[2.46, 2.57]", "[3.78, 3.88]", "[1.13, 1.18]")
+)
+
+# Create clean table
+clean_table <- regression_results |>
+  kable(
+    caption = "Linear Regression Results: Log Income Model",
+    digits = 3,
+    align = c("l", "r", "r", "r", "c")
+  ) |>
+  kable_styling(
+    bootstrap_options = c("striped", "condensed"),
+    full_width = FALSE,
+    font_size = 11
+  ) |>
+  row_spec(2, background = "#ffffcc") |>  # Highlight LEP
+  footnote(general = "Reference: Less than HS education, Female gender")
+
+clean_table
+```

@@ -35,14 +35,14 @@ surveys <- read_rds(file = "data/usa_2021_23.rds") |>
 # Using income wage as a linear function of LEP
 # Controlling other variables, such as a person's education and sex
 
-fit_model <- linear_reg() |>
+fit_income <- linear_reg() |>
   fit(log_income ~ lep + educ_level + gender, data = surveys)
 ```
 
 ```{r}
 # Predictions of data
 predictions <- plot_predictions(
-  fit_model,
+  fit_income,
   condition = c("lep", "educ_level", "gender"),
   draw = FALSE
 )
@@ -50,7 +50,7 @@ predictions <- plot_predictions(
 # Visualize predictions using ggplot2
 # Plot predicted income (back-transformed from log) with all variables
 
-predictions %>%
+predictions |>
   ggplot(
     aes(
       x = educ_level,
@@ -85,4 +85,4 @@ predictions %>%
   )
 ```
 
-Language proficiency is one of the key requirements in almost every job posting, and being proficient in a language can open new doors for an individual. In this analysis, we are using a sample of data drawn from the American Community Surveys (U.S. Census) of 2021-2023 to examine the effect of Limited English proficiency on a person's income in the USA.
+Language proficiency is one of the key requirements in almost every job posting, and being proficient in a language can open new doors for an individual. In this analysis, we are using a sample of data drawn from the American Community Surveys (U.S. Census) of 2021-2023 to examine the effect of Limited English proficiency on a person's income in the USA. I used R to look at the insights into how Limited English Proficiency (LEP) effects a person's wage when controling education level and gender. 
