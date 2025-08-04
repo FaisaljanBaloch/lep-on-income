@@ -1,0 +1,11 @@
+---
+title: "Sources"
+---
+
+The project uses data from IPUMS Microdata of people with income, English proficiency, and other demographics.
+
+### Dataset
+- **Title**: American Community Surveys (ACS)
+- **Time Period**: 2021-2023
+- **Source**: U.S. Census
+- **Link**: [View Dataset](https://www.census.gov/newsroom/press-kits/2024/acs-5-year.html)
