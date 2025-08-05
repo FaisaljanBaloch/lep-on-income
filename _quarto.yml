@@ -4,9 +4,17 @@ project:
 website:
   title: "LEP on Income Levels"
   navbar:
+    background: primary
+    search: true
     left:
       - href: index.qmd
         text: Home
+
+      # Dropdown
+      - text: More
+        menu:
+          - insights.qmd
+
       - model.qmd
       - sources.qmd
       - about.qmd

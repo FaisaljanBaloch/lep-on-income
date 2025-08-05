@@ -2,7 +2,7 @@
 title: "Sources"
 ---
 
-The project uses data from IPUMS Microdata of people with income, English proficiency, and other demographics.
+The project uses data from IPUMS Microdata of people with income, English proficiency, and other demographics. I used tidyverse to omit some of these variables and only get required columns and rows. We used a random sample-sized 500,000 rows.
 
 ### Dataset
 - **Title**: American Community Surveys (ACS)
