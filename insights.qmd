@@ -1,5 +1,45 @@
 ---
 title: "Insights"
 format: html
+execute: 
+  echo: false
 ---
 
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+# Read data
+surveys <- read_rds(file = "data/usa_2021_23.rds")
+```
+
+```{r}
+# Income by education and gender
+surveys |>
+  ggplot(aes(x = educ_level, y = incwage, fill = gender)) +
+  geom_boxplot() +
+  facet_wrap(~ lep) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(
+    x = "Education Level",
+    y = "Income (USD)",
+    fill = "Gender"
+  )
+```
+
+```{r}
+# Education distribution by LEP status
+surveys |>
+  count(lep, educ_level) |>
+  group_by(lep) |>
+  mutate(prop = n / sum(n) * 100) |>  # Convert to percentage
+  ggplot(aes(x = educ_level, y = prop, fill = lep)) +
+  geom_col(position = "dodge") +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +  # Format y-axis as %
+  labs(y = "Percentage (%)", 
+       x = "Education Level",
+       title = "Education Distribution by LEP Status") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
