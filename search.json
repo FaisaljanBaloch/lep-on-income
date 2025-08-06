@@ -4,14 +4,7 @@
     "href": "sources.html",
     "title": "Sources",
     "section": "",
-    "text": "The project uses data from IPUMS Microdata of people with income, English proficiency, and other demographics.\n\nDataset\n\nTitle: American Community Surveys (ACS)\nTime Period: 2021-2023\nSource: U.S. Census\nLink: View Dataset"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Limited English Profiency on Income Levels",
-    "section": "",
-    "text": "Language proficiency is one of the key requirements in almost every job posting, and being proficient in a language can open new doors for an individual. Using a sample of data drawn from the American Community Surveys (U.S. Census) of 2021-2023, I seek to examine the effect of Limited English proficiency on a person’s income in the USA. I used R to look at the insights into how Limited English Proficiency (LEP) effects a person’s wage when controling education level and gender. I modeled a person’s income, as a linear function of her English profiency, education level, and gender. The proficiency does not have a notable influence on income, however education level significantly influence predicted income. At every education level and gender disparities, individuals earning substantially less than individuals with higher levels of education."
+    "text": "The project uses data from IPUMS Microdata of people with income, English proficiency, and other demographics. I used tidyverse to omit some of these variables and only get required columns and rows. We used a random sample-sized 500,000 rows.\n\nDataset\n\nTitle: American Community Surveys (ACS)\nTime Period: 2021-2023\nSource: U.S. Census\nLink: View Dataset"
   },
   {
     "objectID": "about.html",
@@ -19,6 +12,13 @@
     "title": "About",
     "section": "",
     "text": "Hello, I’m Faisal Jan from Turbat, Pakistan. I love to work on Data Science and AI projects that are used to solve real world problems. You can find some of my projects on GitHub or let’s connect to discuss your project at faisaljanfazal@yahoo.com.\nThis project examines the effect of Limited English Proficiency (LEP) on a person’s income when controlling other variables, such as education level and gender.\nYou can view the project repository on GitHub.\nThis project was created as a part of Kane’s Data Science Bootcamp."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Limited English Profiency on Income Levels",
+    "section": "",
+    "text": "Language proficiency is one of the key requirements in almost every job posting, and being proficient in a language can open new doors for an individual. Using a sample of data drawn from the American Community Surveys (U.S. Census) of 2021-2023, I seek to examine the effect of Limited English proficiency on a person’s income in the USA. I used R to look at the insights into how Limited English Proficiency (LEP) effects a person’s wage when controling education level and gender. I modeled a person’s income, as a linear function of her English profiency, education level, and gender. The proficiency does not have a notable influence on income, however education level significantly influence predicted income. At every education level and gender disparities, individuals earning substantially less than individuals with higher levels of education."
   },
   {
     "objectID": "model.html",
