@@ -42,13 +42,13 @@ predictions |>
   ggplot(
     aes(
       x = educ_level,
-      y = exp(estimate),
+      y = expm1(estimate),  # Subtract 1 to reverse the +1 from log transformation
       fill = gender
     )
   ) +
   geom_col(position = position_dodge(width = 0.9)) +
   geom_errorbar(
-    aes(ymin = exp(conf.low), ymax = exp(conf.high)),
+    aes(ymin = expm1(conf.low), ymax = expm1(conf.high)),  # Also adjust error bars
     position = position_dodge(width = 0.9),
     width = 0.25
   ) +

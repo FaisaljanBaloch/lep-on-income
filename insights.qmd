@@ -18,11 +18,17 @@ surveys <- read_rds(file = "data/usa_2021_23.rds")
 ```{r}
 # Income by education and gender
 surveys |>
-  ggplot(aes(x = educ_level, y = incwage, fill = gender)) +
+  ggplot(aes(x = educ_level, y = expm1(log_income), fill = gender)) +  # Transform back
   geom_boxplot() +
-  facet_wrap(~ lep) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(~ lep, 
+             labeller = labeller(lep = c(`0` = "English Proficient", 
+                                        `1` = "Limited English"))) +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        strip.text = element_text(face = "bold")) +
   labs(
+    title = "Income Distribution by Education Level, LEP Status, and Gender",
     x = "Education Level",
     y = "Income (USD)",
     fill = "Gender"
