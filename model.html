@@ -197,13 +197,14 @@ window.Quarto = {
 <p>The outcome variable in our model is the natural logarithm of income (<code>log_income</code>), and it is modeled as a linear function of English proficiency (<code>lep</code>), education level (<code>educ_level</code>), and gender (<code>gender</code>). The fitted model is:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\log(\text{income}) =\;&amp; 3.146 \\
-&amp;+ 0.135 \cdot \text{LEP} \\
-&amp;+ 1.139 \cdot \text{HighSchool} \\
-&amp;+ 1.900 \cdot \text{SomeCollege} \\
-&amp;+ 2.515 \cdot \text{Bachelors} \\
-&amp;+ 3.829 \cdot \text{Graduate} \\
-&amp;+ 1.154 \cdot \text{Male}
+\log(\text{income})_i =\;&amp; 9.62 \\
+&amp;- 0.0385 \cdot \text{LEP}_i \\
+&amp;+ 0.227 \cdot \text{HighSchool}_i \\
+&amp;+ 0.274 \cdot \text{SomeCollege}_i \\
+&amp;+ 0.402 \cdot \text{Bachelors}_i \\
+&amp;+ 1.14 \cdot \text{Graduate}_i \\
+&amp;+ 0.419 \cdot \text{Male}_i \\
+&amp;+ \varepsilon_i
 \end{aligned}
 \]</span></p>
 <p>Where:</p>
@@ -239,52 +240,52 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Intercept</td>
-<td style="text-align: right;">3.150</td>
-<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">9.620</td>
+<td style="text-align: right;">0.007</td>
 <td style="text-align: right;">&lt;0.001</td>
-<td style="text-align: center;">[3.10, 3.20]</td>
+<td style="text-align: center;">[9.61, 9.64]</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; background-color: rgba(255, 255, 204, 255) !important;">Limited English Proficiency</td>
-<td style="text-align: right; background-color: rgba(255, 255, 204, 255) !important;">0.135</td>
-<td style="text-align: right; background-color: rgba(255, 255, 204, 255) !important;">0.039</td>
+<td style="text-align: right; background-color: rgba(255, 255, 204, 255) !important;">-0.038</td>
+<td style="text-align: right; background-color: rgba(255, 255, 204, 255) !important;">0.010</td>
 <td style="text-align: right; background-color: rgba(255, 255, 204, 255) !important;">&lt;0.001</td>
-<td style="text-align: center; background-color: rgba(255, 255, 204, 255) !important;">[0.06, 0.21]</td>
+<td style="text-align: center; background-color: rgba(255, 255, 204, 255) !important;">[-0.058, -0.019]</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">High School</td>
-<td style="text-align: right;">1.140</td>
-<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.227</td>
+<td style="text-align: right;">0.007</td>
 <td style="text-align: right;">&lt;0.001</td>
-<td style="text-align: center;">[1.08, 1.19]</td>
+<td style="text-align: center;">[0.212, 0.241]</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Some College</td>
-<td style="text-align: right;">1.900</td>
-<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.274</td>
+<td style="text-align: right;">0.009</td>
 <td style="text-align: right;">&lt;0.001</td>
-<td style="text-align: center;">[1.83, 1.97]</td>
+<td style="text-align: center;">[0.256, 0.292]</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Bachelor's Degree</td>
-<td style="text-align: right;">2.510</td>
-<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.402</td>
+<td style="text-align: right;">0.008</td>
 <td style="text-align: right;">&lt;0.001</td>
-<td style="text-align: center;">[2.46, 2.57]</td>
+<td style="text-align: center;">[0.387, 0.416]</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Graduate Degree</td>
-<td style="text-align: right;">3.830</td>
-<td style="text-align: right;">0.027</td>
+<td style="text-align: right;">1.140</td>
+<td style="text-align: right;">0.007</td>
 <td style="text-align: right;">&lt;0.001</td>
-<td style="text-align: center;">[3.78, 3.88]</td>
+<td style="text-align: center;">[1.12, 1.15]</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Male Gender</td>
-<td style="text-align: right;">1.150</td>
-<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.419</td>
+<td style="text-align: right;">0.003</td>
 <td style="text-align: right;">&lt;0.001</td>
-<td style="text-align: center;">[1.13, 1.18]</td>
+<td style="text-align: center;">[0.413, 0.426]</td>
 </tr>
 </tbody><tfoot>
 <tr class="odd">
