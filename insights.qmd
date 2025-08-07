@@ -6,51 +6,19 @@ execute:
 ---
 
 ```{r}
-#| message: false
-library(tidyverse)
+library(knitr)
 ```
 
-```{r}
-# Read data
-surveys <- read_rds(file = "data/usa_2021_23.rds")
-```
-
-```{r}
-# Income by education and gender
-surveys |>
-  ggplot(aes(x = educ_level, y = exp(log_income), fill = gender)) +  # Transform back
-  geom_boxplot() +
-  facet_wrap(~ lep, 
-             labeller = labeller(lep = c(`1` = "Limited English", `0` = "English Proficient"))) +
-  scale_y_continuous(labels = scales::dollar_format()) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        strip.text = element_text(face = "bold")) +
-  labs(
-    title = "Income Distribution by Education Level, LEP Status, and Gender",
-    x = "Education Level",
-    y = "Income (USD)",
-    fill = "Gender"
-  )
+```{r, out.width = "600px", out.height = "550px"}
+# Load saved plot image
+knitr::include_graphics("plots/inc_distrib_plot.png")
 ```
 
 This income distribution plot demonstrates clear education and gender premiums, with graduate degree holders earning substantially more than those with less education and males consistently out-earning females across all groups. Limited English Proficiency appears to have a modest negative impact on income, particularly at higher education levels, while significant income inequality is evident through extensive high-income outliers reaching $750,000+ across all subgroups.
 
-```{r}
-# Education distribution by LEP status
-surveys |>
-  count(lep, educ_level) |>
-  group_by(lep) |>
-  mutate(prop = n / sum(n) * 100) |>
-  ggplot(aes(x = educ_level, y = prop, fill = factor(lep))) +  # Add factor() here
-  geom_col(position = "dodge") +
-  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
-  scale_fill_discrete(name = "LEP Status", 
-                     labels = c("English Proficient", "Limited English")) +
-  labs(y = "Percentage (%)",
-       x = "Education Level",
-       title = "Education Distribution by LEP Status") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```{r, out.width = "600px", out.height = "550px"}
+# Load saved plot image
+knitr::include_graphics("plots/edu_distrib_plot.png")
 ```
 
 This education distribution plot reveals a stark educational divide between LEP groups, with Limited English Proficiency individuals heavily concentrated in lower education levels (nearly 50% have less than high school education) while English proficient individuals are more evenly distributed across education levels and comprise the majority of those with graduate degrees (around 40%).
