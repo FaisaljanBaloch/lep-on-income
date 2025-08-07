@@ -18,13 +18,14 @@ The outcome variable in our model is the natural logarithm of income (`log_incom
 
 $$
 \begin{aligned}
-\log(\text{income}) =\;& 3.146 \\
-&+ 0.135 \cdot \text{LEP} \\
-&+ 1.139 \cdot \text{HighSchool} \\
-&+ 1.900 \cdot \text{SomeCollege} \\
-&+ 2.515 \cdot \text{Bachelors} \\
-&+ 3.829 \cdot \text{Graduate} \\
-&+ 1.154 \cdot \text{Male}
+\log(\text{income})_i =\;& 9.62 \\
+&- 0.0385 \cdot \text{LEP}_i \\
+&+ 0.227 \cdot \text{HighSchool}_i \\
+&+ 0.274 \cdot \text{SomeCollege}_i \\
+&+ 0.402 \cdot \text{Bachelors}_i \\
+&+ 1.14 \cdot \text{Graduate}_i \\
+&+ 0.419 \cdot \text{Male}_i \\
+&+ \varepsilon_i
 \end{aligned}
 $$
 
@@ -45,13 +46,13 @@ $$
 
 ```{r}
 regression_results <- tibble(
-  Variable = c("Intercept", "Limited English Proficiency", "High School", "Some College", 
+  Variable = c("Intercept", "Limited English Proficiency", "High School", "Some College",
                "Bachelor's Degree", "Graduate Degree", "Male Gender"),
-  Coefficient = c(3.150, 0.135, 1.140, 1.900, 2.510, 3.830, 1.150),
-  `Std Error` = c(0.026, 0.039, 0.028, 0.037, 0.029, 0.027, 0.015),
+  Coefficient = c(9.62, -0.0385, 0.227, 0.274, 0.402, 1.14, 0.419),
+  `Std Error` = c(0.00703, 0.00992, 0.00744, 0.00914, 0.00752, 0.00720, 0.00332),
   `p-value` = c("<0.001", "<0.001", "<0.001", "<0.001", "<0.001", "<0.001", "<0.001"),
-  `95% CI` = c("[3.10, 3.20]", "[0.06, 0.21]", "[1.08, 1.19]", "[1.83, 1.97]", 
-               "[2.46, 2.57]", "[3.78, 3.88]", "[1.13, 1.18]")
+  `95% CI` = c("[9.61, 9.64]", "[-0.058, -0.019]", "[0.212, 0.241]", "[0.256, 0.292]",
+               "[0.387, 0.416]", "[1.12, 1.15]", "[0.413, 0.426]")
 )
 
 # Create clean table
